@@ -19,28 +19,28 @@ public class QuestionsController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet]
+    [HttpGet("GetAllQuestions")]
     public async Task<IActionResult> GetAll()
     {
         var result = await _mediator.Send(new GetAllQuestionsQuery());
         return Ok(result);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("GetQuestionById")]
     public async Task<IActionResult> GetById(long id)
     {
         var result = await _mediator.Send(new GetQuestionByIdQuery(id));
         return Ok(result);
     }
 
-    [HttpPost]
+    [HttpPost("CreateQuestion") ]
     public async Task<IActionResult> Create(CreateQuestionCommand command)
     {
         var result = await _mediator.Send(command);
         return CreatedAtAction(nameof(GetById), new { id = result }, result);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("UpdateQuestion")]
     public async Task<IActionResult> Update(long id, UpdateQuestionCommand command)
     {
         if (id != command.Id)
@@ -50,10 +50,10 @@ public class QuestionsController : ControllerBase
         return NoContent();
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("DeleteQuestion")]
     public async Task<IActionResult> Delete(long id)
     {
         await _mediator.Send(new DeleteQuestionCommand(id));
         return NoContent();
     }
-} 
+}

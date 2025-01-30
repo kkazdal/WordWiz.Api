@@ -23,21 +23,21 @@ public class WordsController : ControllerBase
         _hubContext = hubContext;
     }
 
-    [HttpGet]
+    [HttpGet("GetAllWords")]
     public async Task<IActionResult> GetAll()
     {
         var result = await _mediator.Send(new GetAllWordsQuery());
         return Ok(result);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("GetWordById")]
     public async Task<IActionResult> GetById(long id)
     {
         var result = await _mediator.Send(new GetWordByIdQuery(id));
         return Ok(result);
     }
 
-    [HttpPost]
+    [HttpPost("CreateWord")]
     public async Task<IActionResult> Create(CreateWordCommand command)
     {
         var wordId = await _mediator.Send(command);
@@ -48,7 +48,7 @@ public class WordsController : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = wordId }, wordId);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("UpdateWord")]
     public async Task<IActionResult> Update(long id, UpdateWordCommand command)
     {
         if (id != command.Id)
@@ -62,7 +62,7 @@ public class WordsController : ControllerBase
         return NoContent();
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("DeleteWord")]
     public async Task<IActionResult> Delete(long id)
     {
         await _mediator.Send(new DeleteWordCommand(id));

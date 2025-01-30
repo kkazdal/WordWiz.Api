@@ -19,28 +19,28 @@ public class CategoriesController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet]
+    [HttpGet("GetAllCategories")]
     public async Task<IActionResult> GetAll()
     {
         var result = await _mediator.Send(new GetAllCategoriesQuery());
         return Ok(result);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("GetCategoryById")]
     public async Task<IActionResult> GetById(long id)
     {
         var result = await _mediator.Send(new GetCategoryByIdQuery(id));
         return Ok(result);
     }
 
-    [HttpPost]
+    [HttpPost("CreateCategory")]
     public async Task<IActionResult> Create(CreateCategoryCommand command)
     {
         var result = await _mediator.Send(command);
         return CreatedAtAction(nameof(GetById), new { id = result }, result);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("UpdateCategory")]
     public async Task<IActionResult> Update(long id, UpdateCategoryCommand command)
     {
         if (id != command.Id)
@@ -50,7 +50,7 @@ public class CategoriesController : ControllerBase
         return NoContent();
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("DeleteCategory")]
     public async Task<IActionResult> Delete(long id)
     {
         await _mediator.Send(new DeleteCategoryCommand(id));
