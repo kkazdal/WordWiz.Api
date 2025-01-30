@@ -1,0 +1,55 @@
+# Build ve yayınlanan dosyalar
+bin/
+obj/
+out/
+*.exe
+*.dll
+*.pdb
+*.log
+*.user
+*.lock.json
+*.cache
+*.vs/
+.vscode/
+.vscode-test/
+*.suo
+*.userosscache
+*.sln.docstates
+*.ncb
+*.psess
+*.pdb
+*.bak
+
+# NuGet paketleri
+*.nupkg
+*.snupkg
+packages/
+!packages/repositories.config
+
+# Rider / Resharper
+.idea/
+*.sln.iml
+
+# Visual Studio Code
+.vscode/
+
+# Visual Studio'nun oluşturduğu dosyalar
+.vs/
+*.csproj.user
+*.suo
+*.user
+*.rsuser
+*.sln.docstates
+
+# Dotnet kullanıcı dosyaları
+.dotnet/
+.env
+.env.*
+.DS_Store
+
+# Secrets (Gizli bilgileri korumak için)
+secrets.json
+
+# Build ve publish edilen dosyalar
+publish/
+logs/
