@@ -6,6 +6,8 @@ using WordWiz.WebApi.Hubs;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using WordWiz.Application.Common.Mappings;
+using WordWiz.Application.Interfaces.Repositories;
+using WordWiz.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,9 +40,7 @@ builder.Services.AddDbContext<WordWizDbContext>(options =>
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 // Add SignalR
 builder.Services.AddSignalR();
-
-// Add Infrastructure Services
-builder.Services.AddInfrastructureServices();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
 // Add Application Services
 builder.Services.AddApplicationServices();
