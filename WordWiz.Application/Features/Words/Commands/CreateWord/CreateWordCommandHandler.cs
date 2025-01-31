@@ -1,4 +1,5 @@
 using MediatR;
+using WordWiz.Application.Common.Exceptions;
 using WordWiz.Application.Interfaces.Repositories;
 using WordWiz.Domain.Entities;
 
@@ -15,6 +16,12 @@ public class CreateWordCommandHandler : IRequestHandler<CreateWordCommand, long>
 
     public async Task<long> Handle(CreateWordCommand request, CancellationToken cancellationToken)
     {
+        var words = await _wordRepository.GetAllAsync();
+        if (words.Any(w => w.WordText.Equals(request.Text, StringComparison.OrdinalIgnoreCase)))
+        {
+            throw new CustomException($"Word '{request.Text}' already exists in the database.");
+        }
+
         var word = new Word
         {
             WordText = request.Text,
@@ -26,4 +33,4 @@ public class CreateWordCommandHandler : IRequestHandler<CreateWordCommand, long>
         var result = await _wordRepository.AddAsync(word);
         return result.Id;
     }
-} 
+}
