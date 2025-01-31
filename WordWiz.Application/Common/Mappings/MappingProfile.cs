@@ -11,9 +11,8 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<Word, WordViewModel>();
-        CreateMap<Category, CategoryViewModel>();
         CreateMap<Question, QuestionViewModel>()
             .ForMember(d => d.CategoryName, opt => opt.MapFrom(s => s.Category.Name))
             .ForMember(d => d.Choices, opt => opt.MapFrom(s => s.GetChoices()));
     }
-} 
+}

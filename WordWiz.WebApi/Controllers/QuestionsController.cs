@@ -41,11 +41,8 @@ public class QuestionsController : ControllerBase
     }
 
     [HttpPut("UpdateQuestion")]
-    public async Task<IActionResult> Update(long id, UpdateQuestionCommand command)
+    public async Task<IActionResult> Update(UpdateQuestionCommand command)
     {
-        if (id != command.Id)
-            return BadRequest();
-
         await _mediator.Send(command);
         return NoContent();
     }

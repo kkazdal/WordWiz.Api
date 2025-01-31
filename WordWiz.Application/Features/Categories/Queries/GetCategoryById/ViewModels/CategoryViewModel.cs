@@ -3,5 +3,5 @@ namespace WordWiz.Application.Features.Categories.Queries.GetCategoryById.ViewMo
 public class CategoryViewModel
 {
     public long Id { get; set; }
-    public string Name { get; set; } = null!;
+    public required string Name { get; set; }
 } 

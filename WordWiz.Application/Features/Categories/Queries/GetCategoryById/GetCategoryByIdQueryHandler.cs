@@ -21,10 +21,14 @@ public class GetCategoryByIdQueryHandler : IRequestHandler<GetCategoryByIdQuery,
     public async Task<CategoryViewModel> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
     {
         var category = await _categoryRepository.GetByIdAsync(request.Id);
-        
+
         if (category == null)
             throw new CustomException($"Category with ID {request.Id} not found.");
 
-        return _mapper.Map<CategoryViewModel>(category);
+        return new CategoryViewModel
+        {
+            Id = category.Id,
+            Name = category.Name
+        };
     }
 } 

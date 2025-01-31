@@ -5,6 +5,7 @@ using WordWiz.Infrastructure;
 using WordWiz.WebApi.Hubs;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using WordWiz.Application.Common.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,7 +35,7 @@ builder.Services.AddDbContext<WordWizDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
         b => b.MigrationsAssembly(typeof(WordWizDbContext).Assembly.FullName));
 });
-
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 // Add SignalR
 builder.Services.AddSignalR();
 
