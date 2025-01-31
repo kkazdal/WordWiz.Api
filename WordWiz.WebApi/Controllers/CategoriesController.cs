@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WordWiz.Application.Features.Categories.Commands.CreateCategory;
 using WordWiz.Application.Features.Categories.Commands.DeleteCategory;
@@ -8,6 +9,7 @@ using WordWiz.Application.Features.Categories.Queries.GetCategoryById;
 
 namespace WordWiz.WebApi.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class CategoriesController : ControllerBase

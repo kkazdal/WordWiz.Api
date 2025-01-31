@@ -7,9 +7,11 @@ using WordWiz.Application.Features.Words.Commands.UpdateWord;
 using WordWiz.Application.Features.Words.Queries.GetAllWords;
 using WordWiz.Application.Features.Words.Queries.GetWordById;
 using WordWiz.WebApi.Hubs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WordWiz.WebApi.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class WordsController : ControllerBase

@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using WordWiz.Application.Features.Questions.Commands.CreateQuestion;
 using WordWiz.Application.Features.Questions.Commands.DeleteQuestion;
 using WordWiz.Application.Features.Questions.Commands.UpdateQuestion;
@@ -8,6 +9,7 @@ using WordWiz.Application.Features.Questions.Queries.GetQuestionById;
 
 namespace WordWiz.WebApi.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class QuestionsController : ControllerBase
